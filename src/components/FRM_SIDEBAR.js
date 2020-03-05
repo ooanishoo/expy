@@ -1,13 +1,8 @@
 import React from "react";
-import {
-  Drawer,
-  Navigation,
-  ListItem,
-  ListItemContent
-} from "react-mdl";
+import { Drawer, Navigation, ListItem, ListItemContent } from "react-mdl";
 import { Link } from "react-router-dom";
-import {Avatar, Grid, Divider} from '@material-ui/core'
-import {makeStyles, useTheme} from '@material-ui/core/styles'
+import { Avatar, Grid, Divider, Typography } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const style = {
   color: "grey",
@@ -15,12 +10,15 @@ const style = {
 };
 
 const useStyles = makeStyles(theme => ({
-  avatar:{
+  avatar: {
     width: theme.spacing(12),
     height: theme.spacing(12),
-    margin:"auto",
+    margin: "auto",
     marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(2)
+  },
+  title:{
+    padding: theme.spacing(2)
   }
 }));
 
@@ -28,17 +26,21 @@ function FRM_SIDEBAR() {
   const classes = useStyles();
   return (
     <Drawer className="drawer">
-      <Grid 
-        justify={'center'} 
-        direction={'row'}
-      >
-      <Avatar
-        alt="Remy Sharp"
-        src="https://www.thispersondoesnotexist.com/image"
-        className={classes.avatar}
-      />
+      <Grid container justify={"center"} className={classes.title}>
+        <Typography variant="h5">Internmatch</Typography>
       </Grid>
-      <Divider/>
+      <Divider />
+      <Grid justify={"center"} direction={"column"} >
+        <Grid item>
+          <Avatar
+            alt="Remy Sharp"
+            src="https://www.thispersondoesnotexist.com/image"
+            className={classes.avatar}
+          />
+        </Grid>
+        
+      </Grid>
+      <Divider />
       <Navigation>
         <ListItem>
           <Link to="/dashboard" style={style}>
