@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import range from "lodash/range";
 import throttle from "lodash/throttle";
@@ -6,19 +6,10 @@ import throttle from "lodash/throttle";
 import { Autocomplete } from "@material-ui/lab";
 import {
   TextField,
-  FormControl,
-  Input,
-  InputLabel,
-  Select,
-  MenuItem,
-  Chip,
   Grid,
   Typography,
   InputBase,
-  OutlinedInput,
   Button,
-  Container,
-  FormHelperText
 } from "@material-ui/core";
 //import LocationOnIcon from '@material-ui/icons/LocationOn';
 import {
@@ -32,7 +23,6 @@ import {
   occupations,
   hcRepresentatives,
   hostCompanies,
-  internshipDurations
 } from "../data";
 import parse from "autosuggest-highlight/parse";
 

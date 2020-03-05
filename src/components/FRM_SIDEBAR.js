@@ -2,7 +2,7 @@ import React from "react";
 import { Drawer, Navigation, ListItem, ListItemContent } from "react-mdl";
 import { Link } from "react-router-dom";
 import { Avatar, Grid, Divider, Typography } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 const style = {
   color: "grey",

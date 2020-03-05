@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Menu, MenuItem, Navigation } from "react-mdl";
+import { Button, Menu, MenuItem } from "react-mdl";
 import { Link } from "react-router-dom";
 
 const style = {

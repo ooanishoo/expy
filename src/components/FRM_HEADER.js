@@ -5,9 +5,6 @@ import FRM_HEADER_OPTIONS from "./FRM_HEADER_OPTIONS";
 import {
   Navigation,
   Header,
-  Textfield,
-  Icon,
-  Box
 } from "react-mdl";
 
 function FRM_HEADER() {

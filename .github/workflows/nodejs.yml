@@ -28,5 +28,5 @@ jobs:
       run: npm ci
     - name: Deploying to GH Pages
       run: npm run deploy --if-present
-      env:
-        CI: true
+      # env:
+      #   CI: true

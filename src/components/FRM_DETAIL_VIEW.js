@@ -23,7 +23,7 @@ const FRM_DETAIL_VIEW = ({ entity = {} }) => {
     );
   }
   
-  const { name, companyName, companyRep, contact, status } = entity;
+  const { name, companyName} = entity;
   return (
     <React.Fragment>
       <Card shadow={0} style={{ width: "100%", margin: "auto" }}>
