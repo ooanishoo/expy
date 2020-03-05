@@ -1,6 +1,6 @@
 {
-  "homepage": "http://ooanishoo.github.io/internmate",
-  "name": "internmate",
+  "homepage": "http://ooanishoo.github.io/expy",
+  "name": "expy",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -42,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }
