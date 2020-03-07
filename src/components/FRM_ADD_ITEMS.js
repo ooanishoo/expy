@@ -35,7 +35,7 @@ function FRM_ADD_ITEMS() {
           </Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/add-internship" style={style}>
+          <Link to="/host-company" style={style}>
             <ListItemText primary="Company" />
           </Link>
         </MenuItem>

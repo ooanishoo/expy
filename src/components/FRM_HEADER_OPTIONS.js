@@ -27,7 +27,7 @@ function FRM_HEADER_OPTIONS() {
             <ListItemText primary="Settings" />
           </Link>
         </MenuItem>
-        <Divider variant="light"/>
+        <Divider/>
         <MenuItem>
           <Link to="/logout" style={style}>
             <ListItemText primary="Logout" />
