@@ -6,6 +6,7 @@ import Contacts from "../pages/Contacts";
 import Companies from "../pages/Companies";
 import Preferences from "../pages/Preferences";
 import AddInternship from "../pages/AddInternship";
+import AddCompany from "../pages/AddCompany";
 
 const Main = () => (
   <Switch>
@@ -16,6 +17,7 @@ const Main = () => (
     <Route exact path="/companies" component={Companies} />
     <Route exact path="/preferences" component={Preferences} />
     <Route exact path="/add-internship" component={AddInternship} />
+    <Route exact path="/host-company" component={AddCompany} />
   </Switch>
 );
 
