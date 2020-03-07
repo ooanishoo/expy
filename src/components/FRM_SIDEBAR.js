@@ -47,7 +47,7 @@ function FRM_SIDEBAR() {
         <ListItem component="a" href="/">
           <Typography
             gutterBottom
-            variant="heading"
+            variant="subtitle1"
             style={{ textDecoration: "none" }}
           >
             INTERNMATCH
