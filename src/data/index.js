@@ -8,3 +8,4 @@ export * from './internshipDurations';
 export * from './internships';
 export * from './occupations';
 export * from './skills';
+export * from './companyTypes';
