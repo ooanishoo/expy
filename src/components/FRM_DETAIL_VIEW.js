@@ -40,7 +40,6 @@ const FRM_DETAIL_VIEW = ({ entity = {} }) => {
           <a
             style={{ style: "text-decoration:none" }}
             href="https://www.google.com/"
-            target="_blank"
           >
             <b>{companyName}</b>
           </a>

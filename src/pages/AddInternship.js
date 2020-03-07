@@ -2,49 +2,23 @@ import React from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import range from "lodash/range";
 import throttle from "lodash/throttle";
-// import Autocomplete from '@material-ui/lab/Autocomplete';
 import { Autocomplete } from "@material-ui/lab";
-import {
-  TextField,
-  Grid,
-  Typography,
-  InputBase,
-  Button,
-} from "@material-ui/core";
-//import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { TextField, Grid, Typography, Button } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
-  KeyboardDatePicker
+  DatePicker
 } from "@material-ui/pickers";
-import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   skills,
   industries,
   occupations,
   hcRepresentatives,
-  hostCompanies,
+  hostCompanies
 } from "../data";
 import parse from "autosuggest-highlight/parse";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    "& .MuiTextField-root": {
-      // margin: theme.spacing(1),
-      // width: "100%",
-      // minWidth: 300,
-      // maxWidth: 700
-    }
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 300,
-    maxWidth: 700,
-    width: "100%"
-  },
-  chips: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
   chip: {
     margin: 2
   },
@@ -57,11 +31,9 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   },
   formWrapper: {
-    //width: "60%",
     margin: "auto"
   }
 }));
-
 
 // Adress stuff
 function loadScript(src, position, id) {
@@ -80,24 +52,35 @@ const autocompleteService = { current: null };
 
 export default function AddInternship() {
   const classes = useStyles();
-  const theme = useTheme();
+
   // Form Fields
+  const [name, setName] = React.useState("");
   const [hostCompany, setHostCompany] = React.useState("");
   const [hostCompanyRep, setHostCompanyRep] = React.useState("");
   const [industry, setIndustry] = React.useState("");
-  const [occupation, setOccupation] = React.useState([]);
   const [internshipDuration, setInternshipDuration] = React.useState("");
   const [internshipDaysPerWeek, setInternshipDaysPerWeek] = React.useState("");
   const [numberOfInterns, setNumberOfInterns] = React.useState("");
+  const [occupation, setOccupation] = React.useState([]);
   const [skill, setSkill] = React.useState([]);
-  const [age, setAge] = React.useState([]);
-  React.useEffect(() => console.log(skill), [skill]);
+
+  React.useEffect(() => {
+    console.log(name, "name");
+    console.log(hostCompany, "hostCompany");
+    console.log(hostCompanyRep, "hostCompanyRep");
+    console.log(industry, "industry");
+    console.log(occupation, "occupation");
+    console.log(skill, "skill");
+    console.log(internshipDuration, "internshipDuration");
+    console.log(internshipDaysPerWeek, "internshipDaysPerWeek");
+    console.log(numberOfInterns, "numberOfInterns");
+    console.log(selectedDate, "selectedDate");
+  });
 
   // Address vars
   const [inputValue, setInputValue] = React.useState("");
   const [options, setOptions] = React.useState([]);
   const loaded = React.useRef(false);
-
   const [selectedDate, setSelectedDate] = React.useState(Date.now());
 
   // calling google maps api for date stuff
@@ -121,12 +104,8 @@ export default function AddInternship() {
     []
   );
 
-  const inputLabel = React.useRef(null);
-  const [labelWidth, setLabelWidth] = React.useState(0);
-
   React.useEffect(() => {
     let active = true;
-    console.log(skill);
 
     if (!autocompleteService.current && window.google) {
       autocompleteService.current = new window.google.maps.places.AutocompleteService();
@@ -151,7 +130,7 @@ export default function AddInternship() {
     return () => {
       active = false;
     };
-  }, [inputValue, fetch, skill]);
+  }, [inputValue, fetch, skill, hostCompany]);
 
   // Address End
 
@@ -167,7 +146,7 @@ export default function AddInternship() {
     <Grid
       container
       direction={"column"}
-      justify={'center'}
+      justify={"center"}
       spacing={2}
       className={classes.formWrapper}
       xs={12}
@@ -184,21 +163,28 @@ export default function AddInternship() {
           id="outlined-basic"
           label="Internship Title"
           variant="outlined"
-          autoFocus={false}
+          autoFocus={true}
           fullWidth
           required
+          value={name}
+          onChange={event => setName(event.target.value)}
         />
       </Grid>
       <Grid item>
         <Autocomplete
+          autoComplete
           options={hostCompanies}
           getOptionLabel={option => option}
+          value={hostCompany}
+          onChange={(event, value) => {
+            setHostCompany(value);
+          }}
           renderInput={params => (
             <TextField
               {...params}
-              placeholder="Select Host Company"
               variant="outlined"
               label="Host Company"
+              placeholder="Select Host Company"
               fullWidth
               required
             />
@@ -209,12 +195,16 @@ export default function AddInternship() {
         <Autocomplete
           options={hcRepresentatives}
           getOptionLabel={option => option}
+          value={hostCompanyRep}
+          onChange={(event, value) => {
+            setHostCompanyRep(value);
+          }}
           renderInput={params => (
             <TextField
               {...params}
-              placeholder="Select Host Company Representative"
               variant="outlined"
               label="Host Company Representative"
+              placeholder="Select Host Company Representative"
               fullWidth
               required
             />
@@ -223,14 +213,19 @@ export default function AddInternship() {
       </Grid>
       <Grid item>
         <Autocomplete
+          autoComplete
           options={industries}
           getOptionLabel={option => option}
+          value={industry}
+          onChange={(event, value) => {
+            setIndustry(value);
+          }}
           renderInput={params => (
             <TextField
               {...params}
-              placeholder="Select Industry"
               variant="outlined"
               label="Industry"
+              placeholder="Select Industry"
               fullWidth
               required
             />
@@ -245,12 +240,8 @@ export default function AddInternship() {
           getOptionLabel={option => option}
           value={occupation}
           onChange={(event, value) => {
-            console.log(event, "event");
-            console.log(value, "value");
             setOccupation(value);
-            console.log(occupation);
           }}
-          //defaultValue={[skills[0]]}
           renderInput={params => (
             <TextField
               {...params}
@@ -269,12 +260,8 @@ export default function AddInternship() {
           getOptionLabel={option => option}
           value={skill}
           onChange={(event, value) => {
-            console.log(event, "event");
-            console.log(value, "value");
             setSkill(value);
-            console.log(skill);
           }}
-          //defaultValue={[skills[0]]}
           renderInput={params => (
             <TextField
               {...params}
@@ -287,31 +274,34 @@ export default function AddInternship() {
       </Grid>
       <Grid item>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            autoOk
-            //disableToolbar
+          <DatePicker
+            //autoOk
+            disableToolbar
             inputVariant="outlined"
             format="dd/MM/yyyy"
             label="Internship Start Date"
-            value={selectedDate}
-            onChange={setSelectedDate}
             fullWidth
-            KeyboardButtonProps={{
-              "aria-label": "change date"
-            }}
+            value={selectedDate}
+            onChange={date => setSelectedDate(date)}
           />
         </MuiPickersUtilsProvider>
       </Grid>
       <Grid item>
         <Autocomplete
+          autoComplete
           options={range(7).map(n => n + 6)}
-          getOptionLabel={option => option}
+          getOptionLabel={option => option.toString()}
+          value={internshipDuration}
+          onChange={(event, value) => {
+            setInternshipDuration(value);
+          }}
+          type="number"
           renderInput={params => (
             <TextField
               {...params}
               placeholder="Weeks"
               variant="outlined"
-              label="Number of weeks"
+              label="Internship Duration"
               fullWidth
               required
               type="number"
@@ -321,16 +311,44 @@ export default function AddInternship() {
       </Grid>
       <Grid item>
         <Autocomplete
+          autoComplete
           options={range(7).map(n => n + 1)}
-          getOptionLabel={option => option}
+          getOptionLabel={option => option.toString()}
+          value={internshipDaysPerWeek}
+          onChange={(event, value) => {
+            setInternshipDaysPerWeek(value);
+          }}
           renderInput={params => (
             <TextField
               {...params}
-              placeholder="Internships days in a week"
+              placeholder="Internship Days per week"
               variant="outlined"
-              label="Days per week"
+              label="Internship Days per week"
               fullWidth
               required
+              type="number"
+            />
+          )}
+        />
+      </Grid>
+      <Grid item>
+        <Autocomplete
+          autoComplete
+          options={range(7).map(n => n + 1)}
+          getOptionLabel={option => option.toString()}
+          value={numberOfInterns}
+          onChange={(event, value) => {
+            setNumberOfInterns(value);
+          }}
+          renderInput={params => (
+            <TextField
+              {...params}
+              placeholder="Number of Interns"
+              variant="outlined"
+              label="Number of Interns"
+              fullWidth
+              required
+              type="number"
             />
           )}
         />
@@ -389,13 +407,13 @@ export default function AddInternship() {
         />
       </Grid>
       <Grid item>
-        <Grid container justify={"flex-end"} spacing={2} >
-          <Grid item >
+        <Grid container justify={"flex-end"} spacing={2}>
+          <Grid item>
             <Button variant="outlined" color="primary" size="large">
               Cancel
             </Button>
           </Grid>
-          <Grid item >
+          <Grid item>
             <Button variant="contained" color="primary" size="large">
               Submit
             </Button>
@@ -403,50 +421,5 @@ export default function AddInternship() {
         </Grid>
       </Grid>
     </Grid>
-    // <Typography variant="h4" gutterBottom>
-    //   Add Internship
-    // </Typography>
-    // <Grid container className={classes.form}>
-    //   <TextField
-    //     id="outlined-basic"
-    //     label="Internship Title"
-    //     variant="outlined"
-    //     autoFocus={true}
-    //     fullWidth
-    //   />
-    // </Grid>
-    // <Grid container spacing={1} direction={'row'}>
-    //   <Grid item>
-    //     <TextField
-    //       id="outlined-basic"
-    //       label="one"
-    //       variant="outlined"
-    //       autoFocus={true}
-    //       fullWidth
-    //     />
-    //   </Grid>
-    //   <Grid item>
-    //     <TextField
-    //       id="outlined-basic"
-    //       label="two"
-    //       variant="outlined"
-    //       autoFocus={true}
-    //       //fullWidth
-    //     />
-    //   </Grid>
-    // </Grid>
-
-    // <Grid container className={classes.form}>
-    //   <TextField
-    //     id="outlined-basic"
-    //     label="Internship Title"
-    //     variant="outlined"
-    //     autoFocus={true}
-    //     fullWidth
-    //   />
-    // </Grid>
-    // </Grid>
-
-    // </Container>
   );
 }

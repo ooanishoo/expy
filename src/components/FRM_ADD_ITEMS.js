@@ -1,6 +1,16 @@
 import React from "react";
 import { Button, Menu, MenuItem } from "react-mdl";
 import { Link } from "react-router-dom";
+import {
+  Avatar,
+  Divider,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  ListItemIcon
+} from "@material-ui/core";
 
 const style = {
   color: "grey",
@@ -21,22 +31,22 @@ function FRM_ADD_ITEMS() {
       <Menu target="add-item" align="right">
         <MenuItem>
           <Link to="/add-internship" style={style}>
-            Internship
+            <ListItemText primary="Internship" />
           </Link>
         </MenuItem>
         <MenuItem>
           <Link to="/add-internship" style={style}>
-            Company
+            <ListItemText primary="Company" />
           </Link>
         </MenuItem>
         <MenuItem>
           <Link to="/add-internship" style={style}>
-            Person
+            <ListItemText primary="Person" />
           </Link>
         </MenuItem>
         <MenuItem>
           <Link to="/add-internship" style={style}>
-            Internship Template
+            <ListItemText primary="Internship Template" />
           </Link>
         </MenuItem>
       </Menu>
