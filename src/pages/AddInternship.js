@@ -17,6 +17,7 @@ import {
   hostCompanies
 } from "../data";
 import parse from "autosuggest-highlight/parse";
+import FRM_CANCEL_BUTTON from '../components/FRM_CANCEL_BUTTON'
 
 const useStyles = makeStyles(theme => ({
   chip: {
@@ -408,11 +409,7 @@ export default function AddInternship() {
       </Grid>
       <Grid item>
         <Grid container justify={"flex-end"} spacing={2}>
-          <Grid item>
-            <Button variant="outlined" color="primary" size="large">
-              Cancel
-            </Button>
-          </Grid>
+          <FRM_CANCEL_BUTTON />
           <Grid item>
             <Button variant="contained" color="primary" size="large">
               Submit
