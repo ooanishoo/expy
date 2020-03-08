@@ -11,6 +11,7 @@ import AddCompany from "../pages/AddCompany";
 const Main = () => (
   <Switch>
     <Route exact path="/" component={Dashboard} />
+    <Route exact path="/expy" component={Dashboard} />
     <Route exact path="/dashboard" component={Dashboard} />
     <Route exact path="/internships" component={Internships} />
     <Route exact path="/contacts" component={Contacts} />
