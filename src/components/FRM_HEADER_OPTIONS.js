@@ -1,7 +1,7 @@
 import React from "react";
 import { IconButton, Menu, MenuItem } from "react-mdl";
 import { Link } from "react-router-dom";
-import { ListItemText, Divider } from "@material-ui/core";
+import { ListItemText, Divider, Avatar, ButtonBase } from "@material-ui/core";
 
 const style = {
   color: "grey",
@@ -11,11 +11,14 @@ const style = {
 function FRM_HEADER_OPTIONS() {
   return (
     <div style={{ position: "relative" }}>
-      <IconButton
+      <ButtonBase id="demo-menu-lower-right">
+        <Avatar src="https://www.thispersondoesnotexist.com/image" />
+      </ButtonBase>
+      {/* <IconButton
         name="person"
         id="demo-menu-lower-right"
         style={{ backgroundColor: "white", color: "#223A4D" }}
-      />
+      /> */}
       <Menu target="demo-menu-lower-right" align="right">
         <MenuItem>
           <Link to="/profile" style={style}>
@@ -27,7 +30,7 @@ function FRM_HEADER_OPTIONS() {
             <ListItemText primary="Settings" />
           </Link>
         </MenuItem>
-        <Divider/>
+        <Divider />
         <MenuItem>
           <Link to="/logout" style={style}>
             <ListItemText primary="Logout" />
