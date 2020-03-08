@@ -58,10 +58,10 @@ export default function AddInternship() {
   const [hostCompany, setHostCompany] = React.useState("");
   const [hostCompanyRep, setHostCompanyRep] = React.useState("");
   const [industry, setIndustry] = React.useState("");
+  const [occupation, setOccupation] = React.useState([]);
   const [internshipDuration, setInternshipDuration] = React.useState("");
   const [internshipDaysPerWeek, setInternshipDaysPerWeek] = React.useState("");
   const [numberOfInterns, setNumberOfInterns] = React.useState("");
-  const [occupation, setOccupation] = React.useState([]);
   const [skill, setSkill] = React.useState([]);
 
   React.useEffect(() => {
@@ -74,14 +74,14 @@ export default function AddInternship() {
     console.log(internshipDuration, "internshipDuration");
     console.log(internshipDaysPerWeek, "internshipDaysPerWeek");
     console.log(numberOfInterns, "numberOfInterns");
-    console.log(selectedDate, "selectedDate");
+    console.log(startDate, "startDate");
   });
 
   // Address vars
   const [inputValue, setInputValue] = React.useState("");
   const [options, setOptions] = React.useState([]);
   const loaded = React.useRef(false);
-  const [selectedDate, setSelectedDate] = React.useState(Date.now());
+  const [startDate, setStartDate] = React.useState(Date.now());
 
   // calling google maps api for date stuff
   if (typeof window !== "undefined" && !loaded.current) {
@@ -135,7 +135,7 @@ export default function AddInternship() {
   // Address End
 
   const handleDateChange = date => {
-    setSelectedDate(date);
+    setStartDate(date);
   };
 
   // React.useEffect(() => {
@@ -281,8 +281,8 @@ export default function AddInternship() {
             format="dd/MM/yyyy"
             label="Internship Start Date"
             fullWidth
-            value={selectedDate}
-            onChange={date => setSelectedDate(date)}
+            value={startDate}
+            onChange={date => setStartDate(date)}
           />
         </MuiPickersUtilsProvider>
       </Grid>
